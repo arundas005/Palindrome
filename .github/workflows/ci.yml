@@ -1,24 +1,21 @@
-name: CI
+name: Build and Run
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 
 jobs:
-  build-and-test:
-    runs-on: windows-latest
+  build:
+
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Set up CMake
-        uses: lukka/run-cmake@v10
-        with:
-          cmakeListsOrSettingsJson: CMakeLists.txt
-      - name: Configure CMake
-        run: cmake -S . -B build
-      - name: Build
-        run: cmake --build build --config Debug
-      - name: Run tests
-        run: ctest --test-dir build --output-on-failure
+    - uses: actions/checkout@v4
+    - name: setup cmake
+      run: sudo apt install cmake
+
+    - name: build
+      run: |
+        cmake -S . -B build
+        cmake --build build
+      
+    - name: run
+      run: build/test_StringOperations.cpp
