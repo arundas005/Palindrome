@@ -18,4 +18,4 @@ jobs:
         cmake --build build
       
     - name: run
-      run: build/test_StringOperations.cpp
+      run: build/test_StringOperations
