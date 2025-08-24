@@ -1,5 +1,13 @@
+
 #include <gtest/gtest.h>
 #include "StringOperations.h"
+
+TEST(StringOperationsTest, CaseInsensitivePalindromes) {
+    StringOperations ops;
+    EXPECT_TRUE(ops.isPalindrome("Madam"));
+    EXPECT_TRUE(ops.isPalindrome("RaceCar"));
+    EXPECT_TRUE(ops.isPalindrome("AbBa"));
+}
 
 TEST(StringOperationsTest, PalindromeTrue) {
     StringOperations ops;
